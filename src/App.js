@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Sidebar from './components/Sidebar';
 import ChannelBar from './components/ChannelBar';
 import ContentContainer from './components/ContentContainer';
@@ -24,13 +25,18 @@ const channels = [
 ]
 
 function App() {
+  const [activeChannel, setActiveChannel] = useState({
+    settion: 'topics',
+    list: 'tailwind-css'
+  })
+
   return (
     <div className="flex">
       <div className="flex flex-row">
         <Sidebar />
-        <ChannelBar channels={channels} />
+        <ChannelBar channels={channels} active={activeChannel} setActive={setActiveChannel}/>
       </div>
-      <ContentContainer channels={channels} />
+      <ContentContainer channels={channels} active={activeChannel} setActive={setActiveChannel} />
     </div>
   );
 }
